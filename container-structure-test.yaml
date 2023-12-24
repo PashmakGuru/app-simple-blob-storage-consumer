@@ -1,0 +1,13 @@
+schemaVersion: 2.0.0
+fileExistenceTests:
+- name: 'App executable exists'
+  path: '/home/app/app'
+  shouldExist: true
+  permissions: '-rwxr-xr-x'
+  uid: 0
+  gid: 0
+metadataTest:
+  exposedPorts: ["8080"]
+  entrypoint: ["/home/app/app"]
+  workdir: "/home/app/"
+  user: "app"
