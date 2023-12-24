@@ -53,6 +53,7 @@ func main() {
 	r.GET("/blobs", blobs.HandleListBlobs)
 	r.POST("/blobs", blobs.HandleCreateBlob)
 	r.DELETE("/blobs/:blob", blobs.HandleDeleteBlob)
+	r.GET("/blobs/:blob", blobs.HandleShowBlob)
 
 	r.Run(":8080")
 }

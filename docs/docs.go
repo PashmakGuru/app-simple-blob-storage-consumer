@@ -72,6 +72,41 @@ const docTemplate = `{
             }
         },
         "/blobs/{blob}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a Blob with Content",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Blob Name",
+                        "name": "blob",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blob is fetched",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.SuccessResponse-blobs_ShowResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "There was an error fetching the blob",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.FailureResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "There was an error fetching the blob",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.FailureResponse"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "produces": [
                     "application/json"
@@ -134,6 +169,17 @@ const docTemplate = `{
                 }
             }
         },
+        "blobs.ShowResponse": {
+            "type": "object",
+            "properties": {
+                "blob": {
+                    "$ref": "#/definitions/blobs.Blob"
+                },
+                "content": {
+                    "type": "string"
+                }
+            }
+        },
         "blobs.SuccessResponse-array_blobs_Blob": {
             "type": "object",
             "properties": {
@@ -150,6 +196,14 @@ const docTemplate = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/blobs.Blob"
+                }
+            }
+        },
+        "blobs.SuccessResponse-blobs_ShowResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/blobs.ShowResponse"
                 }
             }
         }

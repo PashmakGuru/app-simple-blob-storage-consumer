@@ -18,6 +18,13 @@ definitions:
       error:
         type: string
     type: object
+  blobs.ShowResponse:
+    properties:
+      blob:
+        $ref: '#/definitions/blobs.Blob'
+      content:
+        type: string
+    type: object
   blobs.SuccessResponse-array_blobs_Blob:
     properties:
       data:
@@ -29,6 +36,11 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/blobs.Blob'
+    type: object
+  blobs.SuccessResponse-blobs_ShowResponse:
+    properties:
+      data:
+        $ref: '#/definitions/blobs.ShowResponse'
     type: object
 info:
   contact: {}
@@ -91,4 +103,27 @@ paths:
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
       summary: Delete a Blob
+    get:
+      parameters:
+      - description: Blob Name
+        in: path
+        name: blob
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Blob is fetched
+          schema:
+            $ref: '#/definitions/blobs.SuccessResponse-blobs_ShowResponse'
+        "400":
+          description: There was an error fetching the blob
+          schema:
+            $ref: '#/definitions/blobs.FailureResponse'
+        "500":
+          description: There was an error fetching the blob
+          schema:
+            $ref: '#/definitions/blobs.FailureResponse'
+      summary: Get a Blob with Content
 swagger: "2.0"
