@@ -44,8 +44,9 @@ definitions:
     type: object
 info:
   contact: {}
-  description: A simple implementation example for Azure blob storage
-  title: Simple Blob Storage Consumer API
+  description: A simple API-based app which identifies itself through Azure Entra
+    ID and consumes Azure Blob Storage.
+  title: Simple Blob Storage Consumer
 paths:
   /blobs:
     get:

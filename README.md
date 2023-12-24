@@ -1,19 +1,23 @@
-# Simple S3 Consumer
+# Simple Blob Storage Consumer
 
-A simple S3 consumer which connects to Azure Storage
+A simple API-based app which identifies itself through Azure Entra ID and consumes Azure Blob Storage.
 
 ## Getting started
 
-This project requires Go to be installed.
+This project requires Go and Swag to be installed.
 
-Running it then should be as simple as:
+Copy the content of `.env.example` to `.env` and reflect the development configuration. Then run it using:
 
 ```bash
 go get .
 go run main.go
 ```
 
-### Testing
+When your contribution is done, run the following command to generate the docs:
 ```bash
-go test ./...
+swag init
 ```
+
+## TODO
+- [ ] Move `swag init` to CI
+- [ ] Move commands to a `Makefile`

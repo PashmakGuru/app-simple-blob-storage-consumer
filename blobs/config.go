@@ -6,7 +6,7 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
-	_ "github.com/PashmakGuru/project-name/docs"
+	_ "github.com/PashmakGuru/app-simple-blob-storage-consumer/docs"
 )
 
 var client *azblob.Client

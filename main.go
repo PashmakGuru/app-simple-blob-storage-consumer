@@ -1,5 +1,5 @@
-//	@title			Simple Blob Storage Consumer API
-//  @description	A simple implementation example for Azure blob storage
+//	@title			Simple Blob Storage Consumer
+//  @description	A simple API-based app which identifies itself through Azure Entra ID and consumes Azure Blob Storage.
 
 package main
 
@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/PashmakGuru/project-name/blobs"
-	_ "github.com/PashmakGuru/project-name/docs"
+	"github.com/PashmakGuru/app-simple-blob-storage-consumer/blobs"
+	_ "github.com/PashmakGuru/app-simple-blob-storage-consumer/docs"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
