@@ -20,7 +20,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "List Blob Storage Items",
+                "summary": "List All Blobs",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -43,7 +43,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Create a new Storage Blob",
+                "summary": "Create a New Blob",
                 "parameters": [
                     {
                         "description": "Details of the blob",
@@ -76,7 +76,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Get a Blob with Content",
+                "summary": "Get a Blob",
                 "parameters": [
                     {
                         "type": "string",

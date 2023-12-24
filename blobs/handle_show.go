@@ -13,15 +13,15 @@ type ShowResponse struct {
 	Content string `json:"content"`
 }
 
-// HandleShowBlob
-// @summary Get a Blob with Content
+// HandleShow
+// @summary Get a Blob
 // @router /blobs/{blob} [get]
 // @param blob path string true "Blob Name"
 // @produce json
 // @success 200 {object} SuccessResponse[ShowResponse] "Blob is fetched"
 // @failure 400 {object} FailureResponse "There was an error fetching the blob"
 // @failure 500 {object} FailureResponse "There was an error fetching the blob"
-func HandleShowBlob(c *gin.Context) {
+func HandleShow(c *gin.Context) {
 	blobName := c.Param("blob")
 
 	blobDownloadResponse, err := client.DownloadStream(context.TODO(), container, blobName, nil)

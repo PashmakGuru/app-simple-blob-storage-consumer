@@ -12,15 +12,15 @@ type CreateRequest struct {
 	Content string `json:"content"`
 }
 
-// HandleCreateBlob
-// @summary Create a new Storage Blob
+// HandleCreate
+// @summary Create a New Blob
 // @router /blobs [post]
 // @accept json
 // @produce json
 // @param json body CreateRequest true "Details of the blob"
 // @success 201 {object} SuccessResponse[Blob] "Blob is created successfully"
 // @failure 400 {object} FailureResponse "There was an error creating the blob"
-func HandleCreateBlob(c *gin.Context) {
+func HandleCreate(c *gin.Context) {
 	var input CreateRequest
 
 	if err := c.BindJSON(&input); err != nil {

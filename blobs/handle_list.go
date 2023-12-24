@@ -7,13 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// HandleListBlobs
-// @summary List Blob Storage Items
+// HandleList
+// @summary List All Blobs
 // @router /blobs [get]
 // @produce json
 // @success 200 {object} SuccessResponse[[]Blob]
 // @failure 500 {object} FailureResponse
-func HandleListBlobs(c *gin.Context) {
+func HandleList(c *gin.Context) {
 	blobs := make([]Blob, 0)
 
 	pager := client.NewListBlobsFlatPager(container, nil)

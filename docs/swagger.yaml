@@ -60,7 +60,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
-      summary: List Blob Storage Items
+      summary: List All Blobs
     post:
       consumes:
       - application/json
@@ -82,7 +82,7 @@ paths:
           description: There was an error creating the blob
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
-      summary: Create a new Storage Blob
+      summary: Create a New Blob
   /blobs/{blob}:
     delete:
       parameters:
@@ -125,5 +125,5 @@ paths:
           description: There was an error fetching the blob
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
-      summary: Get a Blob with Content
+      summary: Get a Blob
 swagger: "2.0"

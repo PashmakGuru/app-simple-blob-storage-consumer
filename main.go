@@ -50,10 +50,10 @@ func main() {
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.GET("/blobs", blobs.HandleListBlobs)
-	r.POST("/blobs", blobs.HandleCreateBlob)
-	r.DELETE("/blobs/:blob", blobs.HandleDeleteBlob)
-	r.GET("/blobs/:blob", blobs.HandleShowBlob)
+	r.GET("/blobs", blobs.HandleList)
+	r.POST("/blobs", blobs.HandleCreate)
+	r.DELETE("/blobs/:blob", blobs.HandleDelete)
+	r.GET("/blobs/:blob", blobs.HandleShow)
 
 	r.Run(":8080")
 }
