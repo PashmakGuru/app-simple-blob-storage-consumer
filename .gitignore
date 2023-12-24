@@ -32,3 +32,6 @@ cmake-build-*/
 
 # IDE
 .idea
+
+.env
+*.env

@@ -1,0 +1,36 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple implementation example for Azure blob storage",
+        "title": "Simple Blob Storage Consumer API",
+        "contact": {}
+    },
+    "paths": {
+        "/blobs": {
+            "get": {
+                "summary": "List Blob Storage Items",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/blobs.Blob"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "blobs.Blob": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
