@@ -5,8 +5,8 @@ import (
 )
 
 type Blob struct {
-	Name      string `json:"name"`
-	VersionID string `json:"version_id"`
+	Name      string  `json:"name"`
+	VersionID *string `json:"version_id"`
 }
 
 type SuccessResponse[T any] struct {

@@ -46,7 +46,7 @@ const docTemplate = `{
                 "summary": "Create a new Storage Blob",
                 "parameters": [
                     {
-                        "description": "query params",
+                        "description": "Details of the blob",
                         "name": "json",
                         "in": "body",
                         "required": true,
@@ -57,13 +57,13 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "201": {
-                        "description": "Created",
+                        "description": "Blob is created successfully",
                         "schema": {
-                            "$ref": "#/definitions/blobs.Blob"
+                            "$ref": "#/definitions/blobs.SuccessResponse-blobs_Blob"
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "There was an error creating the blob",
                         "schema": {
                             "$ref": "#/definitions/blobs.FailureResponse"
                         }
@@ -111,6 +111,14 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/blobs.Blob"
                     }
+                }
+            }
+        },
+        "blobs.SuccessResponse-blobs_Blob": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/blobs.Blob"
                 }
             }
         }

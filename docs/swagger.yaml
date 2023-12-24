@@ -25,6 +25,11 @@ definitions:
           $ref: '#/definitions/blobs.Blob'
         type: array
     type: object
+  blobs.SuccessResponse-blobs_Blob:
+    properties:
+      data:
+        $ref: '#/definitions/blobs.Blob'
+    type: object
 info:
   contact: {}
   description: A simple implementation example for Azure blob storage
@@ -48,7 +53,7 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: query params
+      - description: Details of the blob
         in: body
         name: json
         required: true
@@ -58,11 +63,11 @@ paths:
       - application/json
       responses:
         "201":
-          description: Created
+          description: Blob is created successfully
           schema:
-            $ref: '#/definitions/blobs.Blob'
+            $ref: '#/definitions/blobs.SuccessResponse-blobs_Blob'
         "400":
-          description: Bad Request
+          description: There was an error creating the blob
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
       summary: Create a new Storage Blob

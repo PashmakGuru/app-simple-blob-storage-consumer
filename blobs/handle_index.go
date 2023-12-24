@@ -30,7 +30,7 @@ func HandleListBlobs(c *gin.Context) {
 		for _, blob := range page.Segment.BlobItems {
 			blobs = append(blobs, Blob{
 				Name:      *blob.Name,
-				VersionID: *blob.VersionID,
+				VersionID: blob.VersionID,
 			})
 		}
 	}

@@ -51,6 +51,7 @@ func main() {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	r.GET("/blobs", blobs.HandleListBlobs)
+	r.POST("/blobs", blobs.HandleCreateBlob)
 
 	r.Run(":8080")
 }
