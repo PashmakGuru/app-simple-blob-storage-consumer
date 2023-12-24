@@ -71,4 +71,24 @@ paths:
           schema:
             $ref: '#/definitions/blobs.FailureResponse'
       summary: Create a new Storage Blob
+  /blobs/{blob}:
+    delete:
+      parameters:
+      - description: Blob Name
+        in: path
+        name: blob
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Blob is deleted successfully
+          schema:
+            $ref: '#/definitions/blobs.SuccessResponse-blobs_Blob'
+        "400":
+          description: There was an error deleting the blob
+          schema:
+            $ref: '#/definitions/blobs.FailureResponse'
+      summary: Delete a Blob
 swagger: "2.0"

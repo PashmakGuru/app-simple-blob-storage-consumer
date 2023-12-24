@@ -70,6 +70,37 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/blobs/{blob}": {
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a Blob",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Blob Name",
+                        "name": "blob",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blob is deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.SuccessResponse-blobs_Blob"
+                        }
+                    },
+                    "400": {
+                        "description": "There was an error deleting the blob",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.FailureResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

@@ -6,7 +6,7 @@ import (
 
 type Blob struct {
 	Name      string  `json:"name"`
-	VersionID *string `json:"version_id"`
+	VersionID *string `json:"version_id,omitempty"`
 }
 
 type SuccessResponse[T any] struct {
