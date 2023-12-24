@@ -3,6 +3,27 @@ definitions:
     properties:
       name:
         type: string
+      version_id:
+        type: string
+    type: object
+  blobs.CreateRequest:
+    properties:
+      content:
+        type: string
+      name:
+        type: string
+    type: object
+  blobs.FailureResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  blobs.SuccessResponse-array_blobs_Blob:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/blobs.Blob'
+        type: array
     type: object
 info:
   contact: {}
@@ -11,12 +32,38 @@ info:
 paths:
   /blobs:
     get:
+      produces:
+      - application/json
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/blobs.Blob'
-            type: array
+            $ref: '#/definitions/blobs.SuccessResponse-array_blobs_Blob'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/blobs.FailureResponse'
       summary: List Blob Storage Items
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query params
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/blobs.CreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/blobs.Blob'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/blobs.FailureResponse'
+      summary: Create a new Storage Blob
 swagger: "2.0"

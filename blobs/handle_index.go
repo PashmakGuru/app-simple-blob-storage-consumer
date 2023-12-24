@@ -2,24 +2,19 @@ package blobs
 
 import (
 	"context"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-type Blob struct {
-	Name string `json:"name"`
-}
-
 // HandleListBlobs
 // @summary List Blob Storage Items
-// @success 200 {object} []Blob
 // @router /blobs [get]
+// @produce json
+// @success 200 {object} SuccessResponse[[]Blob]
+// @failure 500 {object} FailureResponse
 func HandleListBlobs(c *gin.Context) {
-	log.Println("Indexing blobs...")
-
-	var blobs []Blob
+	blobs := make([]Blob, 0)
 
 	pager := client.NewListBlobsFlatPager(container, nil)
 
@@ -27,16 +22,18 @@ func HandleListBlobs(c *gin.Context) {
 		// advance to the next page
 		page, err := pager.NextPage(context.Background())
 		if err != nil {
-			panic(err)
+			Failure(c, http.StatusInternalServerError, err)
+			return
 		}
 
 		// print the blob names for this page
 		for _, blob := range page.Segment.BlobItems {
 			blobs = append(blobs, Blob{
-				Name: *blob.Name,
+				Name:      *blob.Name,
+				VersionID: *blob.VersionID,
 			})
 		}
 	}
 
-	c.JSON(http.StatusOK, blobs)
+	Success[[]Blob](c, http.StatusOK, blobs)
 }

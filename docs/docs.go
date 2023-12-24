@@ -17,15 +17,55 @@ const docTemplate = `{
     "paths": {
         "/blobs": {
             "get": {
+                "produces": [
+                    "application/json"
+                ],
                 "summary": "List Blob Storage Items",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/blobs.Blob"
-                            }
+                            "$ref": "#/definitions/blobs.SuccessResponse-array_blobs_Blob"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.FailureResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a new Storage Blob",
+                "parameters": [
+                    {
+                        "description": "query params",
+                        "name": "json",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/blobs.CreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.Blob"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/blobs.FailureResponse"
                         }
                     }
                 }
@@ -38,6 +78,39 @@ const docTemplate = `{
             "properties": {
                 "name": {
                     "type": "string"
+                },
+                "version_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "blobs.CreateRequest": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "blobs.FailureResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "blobs.SuccessResponse-array_blobs_Blob": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/blobs.Blob"
+                    }
                 }
             }
         }
